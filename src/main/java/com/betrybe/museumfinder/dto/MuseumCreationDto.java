@@ -5,8 +5,12 @@ import com.betrybe.museumfinder.model.Coordinate;
 /**
  * The type MuseumCreationDto.
  */
-public record MuseumCreationDto(String name, String description, String address,
-                        String collectionType, String subject, String url,
-                        Coordinate coordinate) {
+public record MuseumCreationDto(String name,
+                                String description,
+                                String address,
+                                String collectionType,
+                                String subject,
+                                String url,
+                                Coordinate coordinate) {
 }
 
