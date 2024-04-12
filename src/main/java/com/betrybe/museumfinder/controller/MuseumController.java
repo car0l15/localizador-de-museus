@@ -1,6 +1,5 @@
 package com.betrybe.museumfinder.controller;
 
-
 import com.betrybe.museumfinder.dto.MuseumCreationDto;
 import com.betrybe.museumfinder.model.Museum;
 import com.betrybe.museumfinder.service.MuseumServiceInterface;
@@ -25,10 +24,17 @@ public class MuseumController {
     this.museumServiceInterface = museumServiceInterface;
   }
 
-@PostMapping
-  public ResponseEntity<MuseumCreationDto> createMuseum(@RequestBody MuseumCreationDto museumDto){
+
+  /**
+   * Create museum response entity.
+   *
+   * @param museumDto the museum dto
+   * @return the response entity
+   */
+  @PostMapping
+  public ResponseEntity<MuseumCreationDto> createMuseum(@RequestBody MuseumCreationDto museumDto) {
     Museum convertToMuseumModel = ModelDtoConverter.dtoToModel(museumDto);
     Museum create = museumServiceInterface.createMuseum(convertToMuseumModel);
     return ResponseEntity.status(201).body(museumDto);
-}
+  }
 }
