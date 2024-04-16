@@ -5,8 +5,11 @@ package com.betrybe.museumfinder.exception;
  */
 public class MuseumNotFoundException extends RuntimeException {
 
-  public MuseumNotFoundException() {
-    super("Nenhum museu próximo foi localizado");
-  }
+//  public MuseumNotFoundException() {
+//    super("Nenhum museu próximo foi localizado");
+//  }
+  //  public MuseumNotFoundException(String message) {
+//    super(message);
+//  }
 
 }

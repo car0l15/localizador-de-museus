@@ -8,23 +8,25 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * The type General Controller Advice.
+ * The type General Controller.
  */
 @ControllerAdvice
 public class GeneralControllerAdvice {
 
   @ExceptionHandler(InvalidCoordinateException.class)
   public ResponseEntity<String> handleInvalidCoordinateException(InvalidCoordinateException e) {
-    return new ResponseEntity<>("Cordenada inválida", HttpStatus.BAD_REQUEST);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Coordenada inválida!");
   }
 
   @ExceptionHandler(MuseumNotFoundException.class)
   public ResponseEntity<String> handleMuseumNotFoundException(MuseumNotFoundException e) {
-    return ResponseEntity.status(404).body("Museu não encontrado!");
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Museu não encontrado!");
   }
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(Exception e) {
-    return new ResponseEntity<>("Erro interno!", HttpStatus.INTERNAL_SERVER_ERROR);
+  public ResponseEntity<String> handleGenericException(Exception e) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno!");
   }
 }
+
+
