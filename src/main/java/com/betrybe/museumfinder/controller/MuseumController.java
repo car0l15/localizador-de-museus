@@ -29,17 +29,11 @@ public class MuseumController {
     this.museumServiceInterface = museumServiceInterface;
   }
 
-  /**
-   * Gets closest museum.
-   *
-   * @param lat       the lat
-   * @param lng       the lng
-   * @param maxDistKm the max dist km
-   * @return the closest museum
-   */
   @GetMapping("/closest")
-  public ResponseEntity<MuseumDto> getClosestMuseum(@RequestParam Double lat,
-      Double lng, Double maxDistKm) {
+  public ResponseEntity<MuseumDto> getClosestMuseum(
+      @RequestParam(name = "lat") Double lat,
+      @RequestParam(name = "lng") Double lng,
+      @RequestParam(name = "max_dist_km") Double maxDistKm) {
 
     Coordinate coordinate = new Coordinate(lat, lng);
     Museum museumClosest = museumServiceInterface.getClosestMuseum(coordinate, maxDistKm);
@@ -49,14 +43,8 @@ public class MuseumController {
     return ResponseEntity.status(200).body(convertModelToDto);
   }
 
-  /**
-   * Create museum response entity.
-   *
-   * @param museumDto the museum dto
-   * @return the response entity
-   */
   @PostMapping
-  public ResponseEntity<MuseumCreationDto> createMuseum(@RequestBody MuseumCreationDto museumDto) {
+  public ResponseEntity<MuseumCreationDto> createMuseum( @RequestBody MuseumCreationDto museumDto) {
     Museum convertDtoToMuseumModel = ModelDtoConverter.dtoToModel(museumDto);
     Museum create = museumServiceInterface.createMuseum(convertDtoToMuseumModel);
     return ResponseEntity.status(201).body(museumDto);

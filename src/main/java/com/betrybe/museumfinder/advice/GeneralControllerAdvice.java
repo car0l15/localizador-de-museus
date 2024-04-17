@@ -28,5 +28,3 @@ public class GeneralControllerAdvice {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno!");
   }
 }
-
-
