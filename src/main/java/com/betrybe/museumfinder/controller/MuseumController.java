@@ -24,11 +24,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class MuseumController {
   private MuseumServiceInterface museumServiceInterface;
 
+  /**
+   * Instantiates a new Museum controller.
+   *
+   * @param museumServiceInterface the museum service interface
+   */
   @Autowired
   public MuseumController(MuseumServiceInterface museumServiceInterface) {
     this.museumServiceInterface = museumServiceInterface;
   }
 
+  /**
+   * Gets closest museum.
+   *
+   * @param lat       the lat
+   * @param lng       the lng
+   * @param maxDistKm the max dist km
+   * @return the closest museum
+   */
   @GetMapping("/closest")
   public ResponseEntity<MuseumDto> getClosestMuseum(
       @RequestParam(name = "lat") Double lat,
@@ -43,13 +56,25 @@ public class MuseumController {
     return ResponseEntity.status(200).body(convertModelToDto);
   }
 
+  /**
+   * Create museum response entity.
+   *
+   * @param museumDto the museum dto
+   * @return the response entity
+   */
   @PostMapping
-  public ResponseEntity<MuseumCreationDto> createMuseum( @RequestBody MuseumCreationDto museumDto) {
+  public ResponseEntity<MuseumCreationDto> createMuseum(@RequestBody MuseumCreationDto museumDto) {
     Museum convertDtoToMuseumModel = ModelDtoConverter.dtoToModel(museumDto);
     Museum create = museumServiceInterface.createMuseum(convertDtoToMuseumModel);
     return ResponseEntity.status(201).body(museumDto);
   }
 
+  /**
+   * Gets museum by id.
+   *
+   * @param id the id
+   * @return the museum by id
+   */
   @GetMapping("/{id}")
   public ResponseEntity<MuseumDto> getMuseumById(@PathVariable Long id) {
     MuseumDto musuemById = ModelDtoConverter.modelToDto(museumServiceInterface.getMuseum(id));
