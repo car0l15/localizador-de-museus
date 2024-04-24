@@ -7,8 +7,8 @@ proximidades e obter detalhes sobre seu funcionamento.
 <details>
    <summary><strong>📝 Habilidades trabalhadas</strong></summary>
   
-- Criar classes de controle e suas rotas
-- Criar classes de serviço
+- Criar classes de controle e suas rotas usando Spring
+- Criar classes de serviço usando Spring
 - Utilizar injeção de dependências
 - Trabalhar com exceções customizadas
 - Tratar exceções da API através de gerenciadores de erros
@@ -28,6 +28,32 @@ proximidades e obter detalhes sobre seu funcionamento.
   3.  Starte a aplicação digitando o comando no terminal:
      - `mvn spring-boot:run`
   
+</details>
+<details>
+   
+<summary><strong>🎛 Checkstyle</strong></summary>
+
+Para assegurar a qualidade do código, foi utilizado o Checkstyle neste projeto. Isso garante que o código esteja alinhado com as boas práticas de desenvolvimento, tornando-o mais legível e fácil de manter! Para executar o Checkstyle:
+
+```bash
+mvn checkstyle:check
+```
+
+</details>
+
+<details>
+<summary><strong>🛠 Testes</strong></summary>
+
+Para executar todos os testes basta rodar o comando:
+```bash
+mvn test
+```
+
+Para executar apenas uma classe de testes:
+```bash
+mvn test -Dtest="TestClassName"
+```
+
 </details>
 
 <details>
