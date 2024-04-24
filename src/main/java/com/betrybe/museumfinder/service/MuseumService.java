@@ -6,6 +6,7 @@ import com.betrybe.museumfinder.exception.MuseumNotFoundException;
 import com.betrybe.museumfinder.model.Coordinate;
 import com.betrybe.museumfinder.model.Museum;
 import com.betrybe.museumfinder.util.CoordinateUtil;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,12 @@ public class MuseumService implements MuseumServiceInterface {
   @Autowired
   public MuseumService(MuseumFakeDatabase museumFakeDatabase) {
     this.museumFakeDatabase = museumFakeDatabase;
+  }
+
+  @Override
+  public List<Museum> getAllMuseums() {
+    List<Museum> getAllMuseums = museumFakeDatabase.getAllMuseums();
+    return getAllMuseums;
   }
 
   @Override
@@ -54,5 +61,11 @@ public class MuseumService implements MuseumServiceInterface {
       throw new MuseumNotFoundException();
     }
     return getMuseumById.get();
+  }
+
+  @Override
+  public Museum deleteMuseum(Long id) {
+    Museum delete = museumFakeDatabase.deleteMuseum(id);
+    return delete;
   }
 }

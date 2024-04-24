@@ -6,8 +6,10 @@ import com.betrybe.museumfinder.model.Coordinate;
 import com.betrybe.museumfinder.model.Museum;
 import com.betrybe.museumfinder.service.MuseumServiceInterface;
 import com.betrybe.museumfinder.util.ModelDtoConverter;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +34,12 @@ public class MuseumController {
   @Autowired
   public MuseumController(MuseumServiceInterface museumServiceInterface) {
     this.museumServiceInterface = museumServiceInterface;
+  }
+
+  @GetMapping("/")
+  public List<Museum> getAllMusuems() {
+    List<Museum> allMusuems = museumServiceInterface.getAllMuseums();
+    return allMusuems;
   }
 
   /**
@@ -79,5 +87,11 @@ public class MuseumController {
   public ResponseEntity<MuseumDto> getMuseumById(@PathVariable Long id) {
     MuseumDto musuemById = ModelDtoConverter.modelToDto(museumServiceInterface.getMuseum(id));
     return ResponseEntity.status(200).body(musuemById);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Museum> deleteMuseum(@PathVariable Long id) {
+    Museum museumDeleted = museumServiceInterface.deleteMuseum(id);
+    return ResponseEntity.status(202).body(museumDeleted);
   }
 }
