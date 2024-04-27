@@ -36,7 +36,7 @@ public class MuseumController {
     this.museumServiceInterface = museumServiceInterface;
   }
 
-  @GetMapping("/")
+  @GetMapping
   public List<Museum> getAllMusuems() {
     List<Museum> allMusuems = museumServiceInterface.getAllMuseums();
     return allMusuems;
